@@ -1,0 +1,10 @@
+﻿{
+  "profiles": {
+    "CurrentIp.Service": {
+      "commandName": "Project",
+      "environmentVariables": {
+        "DOTNET_ENVIRONMENT": "Development"
+      }
+    }
+  }
+}

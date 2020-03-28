@@ -1,0 +1,18 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+    <PropertyGroup>
+        <TargetFramework>netcoreapp3.1</TargetFramework>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\CurrentIp.DataModel\CurrentIp.DataModel.csproj" />
+      <ProjectReference Include="..\CurrentIp.Storage\CurrentIp.Storage.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <PackageReference Include="FluentValidation" Version="8.6.2" />
+      <PackageReference Include="FluentValidation.AspNetCore" Version="8.6.2" />
+    </ItemGroup>
+
+
+</Project>
