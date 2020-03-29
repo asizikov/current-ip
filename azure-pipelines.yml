@@ -7,6 +7,10 @@ pool:
 variables:
   buildConfiguration: 'Release'
   imageName: 'current-ip-api'
+  appName: 'app-current-ip-api-prod'
+  containerRegistry: 'containerregistrycurrentip.azurecr.io'
+  imageRepository: 'current-ip-api'
+  tag: '$(Build.BuildId)'
 
 
 steps:
@@ -21,3 +25,9 @@ steps:
     repository: 'current-ip-api'
     command: 'buildAndPush'
     Dockerfile: '**/Dockerfile'
+- task: AzureWebAppContainer@1
+  displayName: 'deploy to Azure Web App Containers'
+  inputs:
+    azureSubscription: 'Free Trial (115fc1f7-b661-4a76-bb16-14e52ba3090f)'
+    appName: $(appName)
+    containers: $(containerRegistry)/$(imageRepository):$(tag)
