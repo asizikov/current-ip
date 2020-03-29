@@ -12,6 +12,7 @@ pool:
 variables:
   buildConfiguration: 'Release'
   imageName: 'current-ip-api'
+  containerRegistry: 'containerregistrycurrentip.azurecr.io'
 
 steps:
 - script: dotnet build --configuration $(buildConfiguration)
@@ -22,4 +23,5 @@ steps:
   displayName: 'build docker image'
   inputs:
     repository: $(imageName)
-    command: build 
+    command: buildAndPush
+    containerRegistry: $(dockerRegistryServiceConnection) 
