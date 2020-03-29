@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
@@ -7,9 +8,20 @@ namespace CurrentIp.Storage.Local
 {
     public class InMemoryRecordsRepository : IRecordsRepository
     {
+        private readonly List<IpRecord> _records;
+        public InMemoryRecordsRepository()
+        {
+            _records = new List<IpRecord>();
+        }
+        
         public Task<IpRecord> GetLatestAsync(CancellationToken token)
         {
-            throw new System.NotImplementedException();
+            if (_records.Count == 0)
+            {
+                return Task.FromResult<IpRecord>(null);
+            }
+            
+            return Task.FromResult(_records[^1]);
         }
 
         public Task<IEnumerable<IpRecord>> GetHistoryAsync(int maxItems, CancellationToken token)
@@ -19,7 +31,14 @@ namespace CurrentIp.Storage.Local
 
         public Task<IpRecord> CreateAsync(Report record, CancellationToken token)
         {
-            throw new System.NotImplementedException();
+            var ipRecord = new IpRecord
+            {
+                CurrentIP = record.CurrentIP,
+                MachineName = record.MachineName,
+                LastSeen = DateTime.Now
+            };
+            _records.Add(ipRecord);
+            return Task.FromResult(ipRecord);
         }
     }
 }
