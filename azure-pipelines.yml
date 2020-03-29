@@ -8,14 +8,16 @@ variables:
   buildConfiguration: 'Release'
   imageName: 'current-ip-api'
 
+
 steps:
 - script: dotnet build --configuration $(buildConfiguration)
   displayName: 'dotnet build $(buildConfiguration)'
 - script:  dotnet test 
   displayName: 'run dotnet test'
 - task: Docker@2
-  displayName: 'build docker image'
+  displayName: 'build and push docker image'
   inputs:
     containerRegistry: 'azure-container-registry'
+    repository: 'current-ip-api'
     command: 'buildAndPush'
     Dockerfile: '**/Dockerfile'
