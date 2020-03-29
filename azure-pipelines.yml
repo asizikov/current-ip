@@ -22,5 +22,5 @@ steps:
   displayName: 'build docker image'
   inputs:
     repository: $(imageName)
-    command: build
-    Dockerfile: /Dockerfile
+    command: build 
+    Dockerfile: .
