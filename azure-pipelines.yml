@@ -23,4 +23,3 @@ steps:
   inputs:
     repository: $(imageName)
     command: build 
-    Dockerfile: .
