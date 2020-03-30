@@ -24,10 +24,10 @@ namespace CurrentIp.Web.Controllers
             _recordsRepository = recordsRepository;
         }
 
-        [HttpPost]
-        public async Task<IActionResult> Post(Report ipRecord, CancellationToken token)
+        [HttpPost("report")]
+        public async Task<IActionResult> AddReport(Report report, CancellationToken token)
         {
-            var record = await _recordsRepository.CreateAsync(ipRecord, token).ConfigureAwait(false);
+            var record = await _recordsRepository.CreateAsync(report, token).ConfigureAwait(false);
             return StatusCode(StatusCodes.Status201Created);
         }
 
@@ -38,14 +38,19 @@ namespace CurrentIp.Web.Controllers
         }
 
         [HttpGet("latest")]
-        public async Task<IpRecord> GetLatest()
+        public async Task<ActionResult<IpRecord>> GetLatest(CancellationToken token)
         {
-            return new IpRecord
+            var latestRecord = await _recordsRepository.GetLatestAsync(token).ConfigureAwait(false);
+            if (latestRecord is null)
             {
-                CurrentIP = new IPAddress(new byte[] {192, 168, 1, 1}).ToString(),
-                LastSeen = DateTime.Now,
-                MachineName = "name"
-            };
+                return  new IpRecord
+                {
+                    CurrentIP = new IPAddress(new byte[] {192, 168, 1, 1}).ToString(),
+                    LastSeen = DateTime.Now,
+                    MachineName = "dummy"
+                };
+            }
+            return latestRecord;
         }
     }
 }

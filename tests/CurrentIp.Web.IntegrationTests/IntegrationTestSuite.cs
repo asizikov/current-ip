@@ -1,8 +1,11 @@
 ﻿using System;
+using System.Net;
 using System.Net.Http;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.TestHost;
+using Shouldly;
 using Xunit;
 
 namespace CurrentIp.Web.IntegrationTests
@@ -24,8 +27,8 @@ namespace CurrentIp.Web.IntegrationTests
         [Fact]
         private async Task Health()
         {
-            var httpResponseMessage = await _client.GetAsync("/api/currentip/latest").ConfigureAwait(false);
-            
+            var httpResponseMessage = await _client.GetAsync("/api/health").ConfigureAwait(false);
+            httpResponseMessage.StatusCode.ShouldBe(HttpStatusCode.OK);
         }
     }
 }
