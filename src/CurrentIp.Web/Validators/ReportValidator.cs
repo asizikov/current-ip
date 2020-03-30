@@ -1,6 +1,8 @@
+using System;
 using System.Runtime.Serialization;
 using CurrentIp.DataModel;
 using FluentValidation;
+using FluentValidation.Resources;
 
 namespace CurrentIp.Web.Validators
 {
@@ -9,16 +11,8 @@ namespace CurrentIp.Web.Validators
         public ReportValidator()
         {
             RuleFor(x => x.CurrentIP).NotNull();
-            RuleFor(x => x.CurrentIP);
+            RuleFor(x => x.CurrentIP).ValidIpAddress();
             RuleFor(x => x.MachineName).NotEmpty().MaximumLength(256);
-        }
-    }
-
-    public static class FluentValidatorRuleBuilderExtensions
-    {
-        public static IRuleBuilderOptions<Report, string> ValidIpAddress(this IRuleBuilder<Report, string> ruleBuilder)
-        {
-            return null;
         }
     }
 }

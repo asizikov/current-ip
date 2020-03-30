@@ -21,6 +21,16 @@ namespace CurrentIp.Web.UnitTests.Validators
         {
             _validator.ShouldHaveValidationErrorFor(m => m.CurrentIP, null as string);
         }
+        
+        [Theory]
+        [InlineData("    ")]
+        [InlineData("ab.vxy.123.0")]
+        [InlineData("12312.123123.123123")]
+        [InlineData("999.1.1.0")]
+        public void When_IpAddress_Invalid_ShouldHaveError(string value)
+        {
+            _validator.ShouldHaveValidationErrorFor(m => m.CurrentIP, value);
+        }
 
         [Fact]
         public void When_MachineName_Null_ShouldHaveError()
