@@ -18,9 +18,12 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Build", "Build", "{85A8080A
 ProjectSection(SolutionItems) = preProject
 	Dockerfile = Dockerfile
 	readme.md = readme.md
+	azure-pipelines.yml = azure-pipelines.yml
 EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CurrentIp.Storage.UnitTests", "tests\CurrentIp.Storage.UnitTests\CurrentIp.Storage.UnitTests.csproj", "{D112855F-99F7-4D92-B63F-79381CD97EBF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CurrentIp.Application.FunctionalTests", "tests\CurrentIp.Application.FunctionalTests\CurrentIp.Application.FunctionalTests.csproj", "{919A789C-C8A6-4ECB-B431-91F828820118}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -56,10 +59,15 @@ Global
 		{D112855F-99F7-4D92-B63F-79381CD97EBF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D112855F-99F7-4D92-B63F-79381CD97EBF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D112855F-99F7-4D92-B63F-79381CD97EBF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{919A789C-C8A6-4ECB-B431-91F828820118}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{919A789C-C8A6-4ECB-B431-91F828820118}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{919A789C-C8A6-4ECB-B431-91F828820118}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{919A789C-C8A6-4ECB-B431-91F828820118}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{C540B44F-5163-4C9C-9182-6F6B02777F1A} = {1CEBDAB6-DF64-49C5-ACD2-18293D24BDE6}
 		{5AA2D554-37C5-4950-9C3A-4EFECF1760FF} = {1CEBDAB6-DF64-49C5-ACD2-18293D24BDE6}
 		{D112855F-99F7-4D92-B63F-79381CD97EBF} = {1CEBDAB6-DF64-49C5-ACD2-18293D24BDE6}
+		{919A789C-C8A6-4ECB-B431-91F828820118} = {1CEBDAB6-DF64-49C5-ACD2-18293D24BDE6}
 	EndGlobalSection
 EndGlobal

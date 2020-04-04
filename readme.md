@@ -1,4 +1,9 @@
+### About
 
+Current-IP is a little pet-project started during the COVID-19 self-isolation.
+
+
+### Build and run.
 
 Build:
 `docker build -t api-test .`
