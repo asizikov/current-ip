@@ -26,7 +26,7 @@ namespace CurrentIp.Storage.Local {
 
     public Task<IEnumerable<IpRecord>> GetHistoryAsync(string machineTag, CancellationToken token) {
       var machineTagKey = machineTag.ToLowerInvariant();
-      if (_records.ContainsKey(machineTagKey)) {
+      if (!_records.ContainsKey(machineTagKey)) {
         return Task.FromResult(Enumerable.Empty<IpRecord>());
       }
 
