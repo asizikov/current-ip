@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
     <PropertyGroup>
         <TargetFramework>netcoreapp3.1</TargetFramework>
@@ -16,8 +16,7 @@
     </ItemGroup>
 
     <ItemGroup>
-        <ProjectReference Include="..\..\src\CurrentIp.Storage\CurrentIp.Storage.csproj" />
-        <ProjectReference Include="..\..\src\CurrentIp.Web\CurrentIp.Web.csproj" />
+      <ProjectReference Include="..\..\src\CurrentIp.Storage\CurrentIp.Storage.csproj" />
     </ItemGroup>
 
 </Project>
