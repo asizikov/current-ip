@@ -10,6 +10,9 @@ namespace CurrentIp.Web.Validators {
       RuleFor(x => x.CurrentIP).NotNull();
       RuleFor(x => x.CurrentIP).ValidIpAddress();
       RuleFor(x => x.MachineName).NotEmpty().MaximumLength(256);
+      RuleFor(x => x.MachineTag).NotEmpty().MaximumLength(256);
+      RuleFor(x => x.MachineTag)
+        .Matches(@"^([a-zA-Z]+|\d+)+([a-zA-Z]*|\d*|[-@]*)*([a-zA-Z]+|\d+)+$");
     }
   }
 }

@@ -37,11 +37,24 @@ namespace CurrentIp.Web.UnitTests.Validators {
       _validator.ShouldHaveValidationErrorFor(m => m.MachineName, new string(new char[300]));
     }
 
+    [Theory]
+    [InlineData("    ")]
+    [InlineData("adsf/adsf")]
+    [InlineData("asdfasdf-")]
+    [InlineData("abc\\dc")]
+    [InlineData("adf/asdf")]
+    [InlineData("asdf#adsf")]
+    [InlineData("-asdfasdf")]
+    public void When_MachineTag_Invalid_ShouldHaveError(string value) {
+      _validator.ShouldHaveValidationErrorFor(m => m.MachineTag, value);
+    }
+
     [Fact]
     public void Valid_Model_Now_Errors() {
       var testValidationResult = _validator.TestValidate(new Report {
         CurrentIP = new IPAddress(new byte[] {192, 168, 1, 1}).ToString(),
-        MachineName = "Valid/Name"
+        MachineName = "Valid/Name",
+        MachineTag = "valid-tag"
       });
       testValidationResult.IsValid.ShouldBeTrue();
     }

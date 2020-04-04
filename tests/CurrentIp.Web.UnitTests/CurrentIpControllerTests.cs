@@ -41,14 +41,15 @@ namespace CurrentIp.Web.UnitTests {
 
     [Fact]
     public async Task GetLatest_Returns_Record_If_Present() {
+      const string machineTag = "domain-name";
       var expectedRecord = new IpRecord {
         CurrentIP = "127.0.0.1",
         LastSeen = DateTime.Now.AddDays(-1),
         MachineName = "domain/name"
       };
-      _mockRepository.Setup(repo => repo.GetLatestAsync(_token))
+      _mockRepository.Setup(repo => repo.GetLatestAsync(machineTag, _token))
         .ReturnsAsync(expectedRecord);
-      var result = await _controller.GetLatest(_token).ConfigureAwait(false);
+      var result = await _controller.GetLatest(machineTag, _token).ConfigureAwait(false);
       var ipRecord = result.Value;
       ipRecord.ShouldSatisfyAllConditions(
         () => ipRecord.ShouldNotBeNull(),
@@ -56,7 +57,7 @@ namespace CurrentIp.Web.UnitTests {
         () => ipRecord.MachineName.ShouldBe(expectedRecord.MachineName),
         () => ipRecord.LastSeen.ShouldBe(expectedRecord.LastSeen)
       );
-      _mockRepository.Verify(repo => repo.GetLatestAsync(_token), Times.Once);
+      _mockRepository.Verify(repo => repo.GetLatestAsync(machineTag, _token), Times.Once);
     }
   }
 }

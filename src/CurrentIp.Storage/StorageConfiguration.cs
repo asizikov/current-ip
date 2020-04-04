@@ -1,5 +1,5 @@
 namespace CurrentIp.Storage {
-  public class StorageConfiguration {
-    public int NumberOfRecordsPerMachine => 10;
+  public static class StorageConfiguration {
+    public static int NumberOfRecordsPerMachine => 10;
   }
 }

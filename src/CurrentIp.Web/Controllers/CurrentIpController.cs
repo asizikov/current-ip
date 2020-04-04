@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Net;
 using System.Threading;
 using System.Threading.Tasks;
@@ -26,14 +27,15 @@ namespace CurrentIp.Web.Controllers {
       return StatusCode(StatusCodes.Status201Created);
     }
 
-    [HttpGet("history")]
-    public async Task<ActionResult> GetHistory() {
-      return new AcceptedResult();
+    [HttpGet("{machineName}/history")]
+    public async Task<ActionResult<IEnumerable<IpRecord>>> GetHistory(string machineName, CancellationToken token) {
+      var history = await _recordsRepository.GetHistoryAsync(machineName, token).ConfigureAwait(false);
+      return new OkObjectResult(history);
     }
 
-    [HttpGet("latest")]
-    public async Task<ActionResult<IpRecord>> GetLatest(CancellationToken token) {
-      var latestRecord = await _recordsRepository.GetLatestAsync(token).ConfigureAwait(false);
+    [HttpGet("{machineName}/latest")]
+    public async Task<ActionResult<IpRecord>> GetLatest(string machineName, CancellationToken token) {
+      var latestRecord = await _recordsRepository.GetLatestAsync(machineName,token).ConfigureAwait(false);
       if (latestRecord is null) {
         return new IpRecord {
           CurrentIP = new IPAddress(new byte[] {192, 168, 1, 1}).ToString(),
