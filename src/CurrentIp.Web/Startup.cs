@@ -25,11 +25,8 @@ namespace CurrentIp.Web {
       if (_environment.EnvironmentName == "IntegrationTests") {
         services.AddDistributedMemoryCache();
       }
-      if (Configuration.GetSection("REDIS").Exists()) {
-        services.AddStackExchangeRedisCache(options =>
-        {
-          options.Configuration = Configuration.GetSection("REDIS").Value;
-        });
+      else if (Configuration.GetSection("REDIS").Exists()) {
+        services.AddStackExchangeRedisCache(options => { options.Configuration = Configuration.GetSection("REDIS").Value; });
       }
       else {
         services.AddDistributedMemoryCache();
