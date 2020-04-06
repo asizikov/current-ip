@@ -15,6 +15,7 @@
     </ItemGroup>
 
     <ItemGroup>
+      <ProjectReference Include="..\..\src\CurrentIp.ApiClient\CurrentIp.ApiClient.csproj" />
       <ProjectReference Include="..\..\src\CurrentIp.DataModel\CurrentIp.DataModel.csproj" />
     </ItemGroup>
 

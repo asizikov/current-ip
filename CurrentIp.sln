@@ -1,30 +1,35 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CurrentIp.Service", "src\CurrentIp.Service\CurrentIp.Service.csproj", "{7E9616F8-7C6B-4A7A-8B05-398233FB17FA}"
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29609.76
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CurrentIp.Service", "src\CurrentIp.Service\CurrentIp.Service.csproj", "{7E9616F8-7C6B-4A7A-8B05-398233FB17FA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CurrentIp.Web", "src\CurrentIp.Web\CurrentIp.Web.csproj", "{0648E99A-6337-4BB9-B31C-0EE6291AE6C2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CurrentIp.Web", "src\CurrentIp.Web\CurrentIp.Web.csproj", "{0648E99A-6337-4BB9-B31C-0EE6291AE6C2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CurrentIp.DataModel", "src\CurrentIp.DataModel\CurrentIp.DataModel.csproj", "{6D697285-2C36-4080-94FE-CA4F360C423D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CurrentIp.DataModel", "src\CurrentIp.DataModel\CurrentIp.DataModel.csproj", "{6D697285-2C36-4080-94FE-CA4F360C423D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CurrentIp.Web.UnitTests", "tests\CurrentIp.Web.UnitTests\CurrentIp.Web.UnitTests.csproj", "{C540B44F-5163-4C9C-9182-6F6B02777F1A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CurrentIp.Web.UnitTests", "tests\CurrentIp.Web.UnitTests\CurrentIp.Web.UnitTests.csproj", "{C540B44F-5163-4C9C-9182-6F6B02777F1A}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{1CEBDAB6-DF64-49C5-ACD2-18293D24BDE6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CurrentIp.Storage", "src\CurrentIp.Storage\CurrentIp.Storage.csproj", "{6D9EA82D-9179-4B8D-9777-15A3A87BB85B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CurrentIp.Storage", "src\CurrentIp.Storage\CurrentIp.Storage.csproj", "{6D9EA82D-9179-4B8D-9777-15A3A87BB85B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CurrentIp.Web.IntegrationTests", "tests\CurrentIp.Web.IntegrationTests\CurrentIp.Web.IntegrationTests.csproj", "{5AA2D554-37C5-4950-9C3A-4EFECF1760FF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CurrentIp.Web.IntegrationTests", "tests\CurrentIp.Web.IntegrationTests\CurrentIp.Web.IntegrationTests.csproj", "{5AA2D554-37C5-4950-9C3A-4EFECF1760FF}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Build", "Build", "{85A8080A-733B-40C2-A1ED-F31D568D5A71}"
-ProjectSection(SolutionItems) = preProject
-	Dockerfile = Dockerfile
-	readme.md = readme.md
-	azure-pipelines.yml = azure-pipelines.yml
-	docker-compose.yaml = docker-compose.yaml
-EndProjectSection
+	ProjectSection(SolutionItems) = preProject
+		azure-pipelines.yml = azure-pipelines.yml
+		docker-compose.yaml = docker-compose.yaml
+		Dockerfile = Dockerfile
+		readme.md = readme.md
+	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CurrentIp.Storage.UnitTests", "tests\CurrentIp.Storage.UnitTests\CurrentIp.Storage.UnitTests.csproj", "{D112855F-99F7-4D92-B63F-79381CD97EBF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CurrentIp.Storage.UnitTests", "tests\CurrentIp.Storage.UnitTests\CurrentIp.Storage.UnitTests.csproj", "{D112855F-99F7-4D92-B63F-79381CD97EBF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CurrentIp.Application.FunctionalTests", "tests\CurrentIp.Application.FunctionalTests\CurrentIp.Application.FunctionalTests.csproj", "{919A789C-C8A6-4ECB-B431-91F828820118}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CurrentIp.Application.FunctionalTests", "tests\CurrentIp.Application.FunctionalTests\CurrentIp.Application.FunctionalTests.csproj", "{919A789C-C8A6-4ECB-B431-91F828820118}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CurrentIp.ApiClient", "src\CurrentIp.ApiClient\CurrentIp.ApiClient.csproj", "{5D5258B1-268C-4316-810F-3BA30A7D8C7B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -64,11 +69,21 @@ Global
 		{919A789C-C8A6-4ECB-B431-91F828820118}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{919A789C-C8A6-4ECB-B431-91F828820118}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{919A789C-C8A6-4ECB-B431-91F828820118}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5D5258B1-268C-4316-810F-3BA30A7D8C7B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5D5258B1-268C-4316-810F-3BA30A7D8C7B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5D5258B1-268C-4316-810F-3BA30A7D8C7B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5D5258B1-268C-4316-810F-3BA30A7D8C7B}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{C540B44F-5163-4C9C-9182-6F6B02777F1A} = {1CEBDAB6-DF64-49C5-ACD2-18293D24BDE6}
 		{5AA2D554-37C5-4950-9C3A-4EFECF1760FF} = {1CEBDAB6-DF64-49C5-ACD2-18293D24BDE6}
 		{D112855F-99F7-4D92-B63F-79381CD97EBF} = {1CEBDAB6-DF64-49C5-ACD2-18293D24BDE6}
 		{919A789C-C8A6-4ECB-B431-91F828820118} = {1CEBDAB6-DF64-49C5-ACD2-18293D24BDE6}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {3C96EE53-623E-44D5-96EE-3F3815EDEFC7}
 	EndGlobalSection
 EndGlobal
