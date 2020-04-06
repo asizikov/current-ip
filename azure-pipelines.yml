@@ -22,7 +22,7 @@ steps:
   displayName: 'build and push to docker'
   inputs:
     containerRegistry: 'docker-hub-public'
-    repository: 'current-ip'
+    repository: 'asizikov/current-ip'
     command: 'buildAndPush'
     Dockerfile: '**/Dockerfile'
 - task: AzureWebAppContainer@1
