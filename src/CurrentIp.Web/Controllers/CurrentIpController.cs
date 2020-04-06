@@ -33,9 +33,6 @@ namespace CurrentIp.Web.Controllers {
       return new OkObjectResult(history);
     }
 
-    [HttpGet("{blah}/bar")]
-    public async Task<OkResult> Bar(string blah) => Ok();
-
     [HttpGet("{machineName}/latest")]
     public async Task<ActionResult<IpRecord>> GetLatest(string machineName, CancellationToken token) {
       var latestRecord = await _recordsRepository.GetLatestAsync(machineName,token).ConfigureAwait(false);
