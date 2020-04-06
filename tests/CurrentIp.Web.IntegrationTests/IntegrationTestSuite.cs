@@ -19,7 +19,7 @@ namespace CurrentIp.Web.IntegrationTests {
     public IntegrationTestSuite() {
       var builder = new WebHostBuilder()
         .UseStartup<Startup>()
-        .UseEnvironment("Testing");
+        .UseEnvironment("IntegrationTests");
       _server = new TestServer(builder);
       _client = _server.CreateClient();
     }
