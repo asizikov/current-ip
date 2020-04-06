@@ -1,0 +1,42 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: current-ip-app-dev
+---
+apiVersion: apps/v1
+kind: ReplicaSet
+metadata:
+  namespace: current-ip-app-dev
+  name: current-ip-backend
+spec: 
+  replicas: 2
+  selector:
+    matchLabels:
+      app: current-ip-app
+  template:
+    metadata:
+      labels:
+        app: current-ip-app
+    spec:
+      containers:
+      - name: current-ip-app
+        image: asizikov/current-ip
+        livenessProbe:
+          httpGet:
+            path: /api/health
+            port: 80
+          initialDelaySeconds: 5
+          periodSeconds: 3
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: current-ip-app-loadbalancer
+  namespace: current-ip-app-dev
+spec:
+  type: LoadBalancer
+  selector:
+    app: current-ip-app
+  ports:
+  - port: 80
+    targetPort: 80

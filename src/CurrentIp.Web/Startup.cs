@@ -1,3 +1,5 @@
+using System;
+using System.Linq;
 using System.Reflection;
 using FluentValidation.AspNetCore;
 using Microsoft.AspNetCore.Builder;
@@ -9,22 +11,33 @@ using CurrentIp.Storage.DependencyInjection;
 
 namespace CurrentIp.Web {
   public class Startup {
-    public Startup(IConfiguration configuration) {
+    private readonly IWebHostEnvironment _environment;
+
+    public Startup(IConfiguration configuration, IWebHostEnvironment environment) {
+      _environment = environment;
       Configuration = configuration;
     }
 
     public IConfiguration Configuration { get; }
 
-    // This method gets called by the runtime. Use this method to add services to the container.
     public void ConfigureServices(IServiceCollection services) {
       services.AddHealthChecks();
+      if (_environment.EnvironmentName == "IntegrationTests") {
+        services.AddDistributedMemoryCache();
+      }
+      else if (Configuration.GetSection("REDIS").Exists()) {
+        services.AddStackExchangeRedisCache(options => { options.Configuration = Configuration.GetSection("REDIS").Value; });
+      }
+      else {
+        services.AddDistributedMemoryCache();
+      }
+
       services
-        .AddInMemoryStorage()
+        .AddPageStorage()
         .AddControllers()
         .AddFluentValidation(opt => opt.RegisterValidatorsFromAssembly(Assembly.GetExecutingAssembly()));
     }
 
-    // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
     public void Configure(IApplicationBuilder app, IWebHostEnvironment env) {
       if (env.IsDevelopment()) {
         app.UseDeveloperExceptionPage();
@@ -33,8 +46,6 @@ namespace CurrentIp.Web {
       app.UseHttpsRedirection();
 
       app.UseRouting();
-
-      app.UseAuthorization();
 
       app.UseEndpoints(endpoints => {
         endpoints.MapHealthChecks("/api/health");

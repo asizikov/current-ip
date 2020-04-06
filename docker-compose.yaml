@@ -1,0 +1,16 @@
+version: '3'
+services:
+  current-ip-storage:
+    image: redis
+    container_name: current-ip-storage
+    ports:
+        - "6379:6379"
+
+  current-ip-back-api:
+    build: .
+    image: current-ip-app
+    container_name: current-ip-app
+    environment:
+      REDIS: current-ip-storage
+    ports:
+        - "127.0.0.1:8080:80"

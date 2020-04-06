@@ -5,18 +5,15 @@ Current-IP is a little pet-project started during the COVID-19 self-isolation.
 
 ### Build and run.
 
-Build:
-`docker build -t api-test .`
+Local run:
 
-Run: 
+`docker-compose up -d`
 
-`docker run -it --rm -p 5000:80 --name api-test api-test`
+two containers should be brought up and the API should be seen at:
 
-And hit the url: 
+`http://127.0.0.1:8080/api/currentip/latest`
 
-`http://localhost:5000/api/currentip/latest`
-
-and make sure to get something like that as a result: 
+and make sure to get something like that as a result:
 
 ```json
 {

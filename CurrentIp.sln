@@ -19,6 +19,7 @@ ProjectSection(SolutionItems) = preProject
 	Dockerfile = Dockerfile
 	readme.md = readme.md
 	azure-pipelines.yml = azure-pipelines.yml
+	docker-compose.yaml = docker-compose.yaml
 EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CurrentIp.Storage.UnitTests", "tests\CurrentIp.Storage.UnitTests\CurrentIp.Storage.UnitTests.csproj", "{D112855F-99F7-4D92-B63F-79381CD97EBF}"
