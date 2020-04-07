@@ -19,4 +19,4 @@ services:
     build: src/CurrentIp.Service .
     image: current-ip-service
     environment:
-      CURRENT_TP_SERVICE_HOST_URL: current-up-app
+      CURRENT_IP_SERVICE_HOST_URL: current-up-app
