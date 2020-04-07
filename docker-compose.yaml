@@ -7,10 +7,16 @@ services:
         - "6379:6379"
 
   current-ip-back-api:
-    build: .
+    build: src/CurrentIp.Web .
     image: current-ip-app
     container_name: current-ip-app
     environment:
       REDIS: current-ip-storage
     ports:
         - "127.0.0.1:8080:80"
+
+  current-ip-service:
+    build: src/CurrentIp.Service .
+    image: current-ip-service
+    environment:
+      CURRENT_TP_SERVICE_HOST_URL: current-up-app
