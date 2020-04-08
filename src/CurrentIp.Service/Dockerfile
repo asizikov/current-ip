@@ -2,7 +2,8 @@ FROM mcr.microsoft.com/dotnet/core/runtime:3.1-buster-slim AS base
 WORKDIR /app
 
 ENV CURRENT_IP_SERVICE_TIMEOUT_SECONDS "30"
-ENV CURRENT_TP_SERVICE_HOST_URL "https://app-current-ip-api-prod.azurewebsites.net/"
+ENV CURRENT_IP_SERVICE_HOST_URL "app-current-ip-api-prod.azurewebsites.net"
+ENV CURRENT_IP_SERVICE_HOST_PORT "80"
 
 FROM mcr.microsoft.com/dotnet/core/sdk:3.1-buster AS build
 WORKDIR /src
