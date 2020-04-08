@@ -24,7 +24,8 @@ steps:
     containerRegistry: 'docker-hub-public'
     repository: 'asizikov/current-ip'
     command: 'buildAndPush'
-    Dockerfile: '**/Dockerfile'
+    buildContext: '**'
+    Dockerfile: 'src/CurrentIp.Web/Dockerfile'
 - task: AzureWebAppContainer@1
   displayName: 'deploy to Azure Web App Containers'
   inputs:
