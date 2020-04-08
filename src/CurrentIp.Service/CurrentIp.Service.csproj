@@ -3,12 +3,15 @@
     <PropertyGroup>
         <TargetFramework>netcoreapp3.1</TargetFramework>
         <UserSecretsId>dotnet-CurrentIp.Service-BE9732FC-A619-49F1-9B31-9235B1E51826</UserSecretsId>
+        <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
+        <DockerfileContext>..\..</DockerfileContext>
     </PropertyGroup>
 
     <ItemGroup>
         <PackageReference Include="Microsoft.Extensions.Configuration" Version="3.1.3" />
         <PackageReference Include="Microsoft.Extensions.Hosting" Version="3.1.3" />
         <PackageReference Include="Microsoft.Extensions.Hosting.WindowsServices" Version="3.1.3" />
+        <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.9.10" />
     </ItemGroup>
 
     <ItemGroup>

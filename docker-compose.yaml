@@ -5,12 +5,22 @@ services:
     container_name: current-ip-storage
     ports:
         - "6379:6379"
-
   current-ip-back-api:
-    build: .
+    build:
+      context: .
+      dockerfile: src/CurrentIp.Web/Dockerfile
     image: current-ip-app
     container_name: current-ip-app
     environment:
       REDIS: current-ip-storage
     ports:
-        - "127.0.0.1:8080:80"
+      - 8080:80
+       # - "127.0.0.1:8080:80"
+  current-ip-service:
+    build:
+      context: .
+      dockerfile: src/CurrentIp.Service/Dockerfile
+    image: current-ip-service
+    environment:
+      CURRENT_IP_SERVICE_HOST_URL: current-ip-app
+      CURRENT_IP_SERVICE_HOST_PORT: 80

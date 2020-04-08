@@ -23,6 +23,7 @@ namespace CurrentIp.Web.Controllers {
 
     [HttpPost("report")]
     public async Task<IActionResult> AddReport(Report report, CancellationToken token) {
+      _logger.LogInformation($"Received a report from {report.MachineName} with {report.CurrentIP}");
       var record = await _recordsRepository.CreateAsync(report, token).ConfigureAwait(false);
       return StatusCode(StatusCodes.Status201Created);
     }

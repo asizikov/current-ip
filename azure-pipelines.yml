@@ -1,5 +1,6 @@
 trigger:
 - master
+- feature/*
 
 pool:
   vmImage: 'ubuntu-latest'
@@ -19,13 +20,16 @@ steps:
 - script: dotnet test --filter 'FullyQualifiedName!~FunctionalTests'
   displayName: 'run dotnet test'
 - task: Docker@2
+  condition: eq(variables['Build.SourceBranch'], 'refs/heads/master')
   displayName: 'build and push to docker'
   inputs:
     containerRegistry: 'docker-hub-public'
     repository: 'asizikov/current-ip'
     command: 'buildAndPush'
-    Dockerfile: '**/Dockerfile'
+    buildContext: '**'
+    Dockerfile: 'src/CurrentIp.Web/Dockerfile'
 - task: AzureWebAppContainer@1
+  condition: eq(variables['Build.SourceBranch'], 'refs/heads/master')
   displayName: 'deploy to Azure Web App Containers'
   inputs:
     azureSubscription: 'Free Trial (115fc1f7-b661-4a76-bb16-14e52ba3090f)'
