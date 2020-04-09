@@ -2,6 +2,18 @@
 
 Current-IP is a little pet-project started during the COVID-19 self-isolation.
 
+#### The system in a nutshell
+
+![docs/system-overview.JPG](docs/system-overview.JPG)
+
+The system consists of two parts:
+
+1. A Windows Service client which is running on the Windows desktop, periodically checks the host machine IP address, and reports it to the API
+2. An API service running in Azure, which collects all machine reports, and stored them in a Redis storage
+
+Whenever I or my coworker need to establish an RDP connection to one of the dev machines we can query an API and request a fresh `.rdp` file for that machine.
+
+We cannot use AD discovery capabilities due to a nature of our setup (dev machines are not in a domain), and the VPN server distributes IP addresses randomly.
 
 ### Build and run.
 
