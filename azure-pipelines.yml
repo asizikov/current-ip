@@ -20,7 +20,7 @@ steps:
 - script: dotnet test --filter 'FullyQualifiedName!~FunctionalTests'
   displayName: 'run dotnet test'
 - task: Docker@2
-  #condition: eq(variables['Build.SourceBranch'], 'refs/heads/master')
+  condition: eq(variables['Build.SourceBranch'], 'refs/heads/master')
   displayName: 'build and push to docker'
   inputs:
     containerRegistry: 'docker-hub-public'
