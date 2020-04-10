@@ -8,6 +8,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using CurrentIp.Storage.DependencyInjection;
+using CurrentIp.Web.Providers;
 
 namespace CurrentIp.Web {
   public class Startup {
@@ -32,6 +33,7 @@ namespace CurrentIp.Web {
         services.AddDistributedMemoryCache();
       }
 
+      services.AddTransient<IRdpFileProvider, RdpFileProvider>();
       services
         .AddPageStorage()
         .AddControllers()

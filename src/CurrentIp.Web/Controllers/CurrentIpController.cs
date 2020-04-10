@@ -2,11 +2,11 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Net;
-using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using CurrentIp.DataModel;
 using CurrentIp.Storage;
+using CurrentIp.Web.Providers;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
@@ -17,10 +17,12 @@ namespace CurrentIp.Web.Controllers {
   public class CurrentIpController : ControllerBase {
     private readonly ILogger<CurrentIpController> _logger;
     private readonly IRecordsRepository _recordsRepository;
+    private readonly IRdpFileProvider _rdpFileProvider;
 
-    public CurrentIpController(ILogger<CurrentIpController> logger, IRecordsRepository recordsRepository) {
+    public CurrentIpController(ILogger<CurrentIpController> logger, IRecordsRepository recordsRepository,IRdpFileProvider rdpFileProvider) {
       _logger = logger;
       _recordsRepository = recordsRepository;
+      _rdpFileProvider = rdpFileProvider;
     }
 
     [HttpPost("report")]
@@ -52,14 +54,11 @@ namespace CurrentIp.Web.Controllers {
 
     [HttpGet("{machineTag}/rdp")]
     public async Task<IActionResult> GetRdpFile(string machineTag, CancellationToken token) {
+      _logger.LogInformation($"Received RDP file request for {machineTag}");
       var latestRecord = await _recordsRepository.GetLatestAsync(machineTag, token).ConfigureAwait(false);
-      var sb = new StringBuilder();
-      sb.AppendLine($"full address:s:{latestRecord.CurrentIP}:3389");
-      sb.AppendLine("prompt for credentials:i:1");
-      sb.AppendLine("administrative session:i:1");
-
-      var stream = new MemoryStream(Encoding.ASCII.GetBytes(sb.ToString()));
-      return File(stream, "application/octet-stream",$"{latestRecord.MachineName}.rdp");
+      var stream = await _rdpFileProvider.CreateFileStreamAsync(latestRecord, token).ConfigureAwait(false);
+      stream.Seek(0, SeekOrigin.Begin);
+      return File(stream, "application/octet-stream",$"{machineTag}.rdp");
     }
   }
 }
